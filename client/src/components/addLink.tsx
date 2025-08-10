@@ -23,7 +23,7 @@ function AddLinkDialog() {
       window.location.reload()
     } catch (error) {
       console.log("🚀 ~ handleSave ~ error:", error)
-      alert("Something went wrong");
+  
     } finally {
       setIsLoading(false);
     }
