@@ -31,7 +31,7 @@ origins = [
 print(origins)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://single-digit.vercel.app"],
+    allow_origins=origins,
     allow_credentials=True,  # Allow cookies, authorization header  s, etc.
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],  # Allow all headers
@@ -217,7 +217,7 @@ def auth_google(code: str):
         path="/",
         secure=True,
         httponly=True,
-        samesite="lax",
+        samesite="none",
     )
 
     return redirect_response
