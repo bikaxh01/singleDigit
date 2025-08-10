@@ -14,13 +14,14 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [user, isLoading] = useUser();
-
+  
   useEffect(() => {
     getLinks();
-  }, []);
-
+  }, [user]);
+  
   const getLinks = async () => {
-
+    
+    console.log("🚀 ~ Home ~ isLoading:", isLoading)
     console.log("🚀 ~ getLinks ~ user:", user)
     if (user) {
       try {
