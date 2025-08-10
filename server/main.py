@@ -27,11 +27,12 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",  # Example: your frontend application
+    os.getenv("CLIENT_CALLBACK_URL"),
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,  # Allow cookies, authorization header  s, etc.
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],  # Allow all headers
