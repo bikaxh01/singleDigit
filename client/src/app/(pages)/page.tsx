@@ -165,11 +165,17 @@ export default function Home() {
           <Loader2 className="size-12 animate-spin" />
         </div>
       ) : user ? (
-        <div className="overflow-y-auto max-h-[70vh] space-y-2">
-          {links.map((link) => (
-            <LinkCard key={link.id} link={link} />
-          ))}
-        </div>
+        links.length === 0 ? (
+          <div className="text-center text-neutral-500 mt-8">
+            No links found.
+          </div>
+        ) : (
+          <div className="overflow-y-auto max-h-[70vh] space-y-2">
+            {links.map((link) => (
+              <LinkCard key={link.id} link={link} />
+            ))}
+          </div>
+        )
       ) : (
         <div>
           <h1>Sign In </h1>
