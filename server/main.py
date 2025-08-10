@@ -26,10 +26,9 @@ load_dotenv()
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",  # Example: your frontend application
     os.getenv("CLIENT_CALLBACK_URL"),
 ]
-
+print(origins)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
