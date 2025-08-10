@@ -1,0 +1,9 @@
+fastapi[standard]
+pymongo
+python-dotenv
+firecrawl-py
+pydantic[email]
+markdown
+google-genai
+google-api-python-client
+pyjwt
