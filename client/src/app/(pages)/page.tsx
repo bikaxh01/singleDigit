@@ -166,8 +166,8 @@ export default function Home() {
         </div>
       ) : user ? (
         links.length === 0 ? (
-          <div className="text-center text-neutral-500 mt-8">
-            No links found.
+          <div className="h-full w-full flex items-center justify-center">
+            <h1>No links found.</h1>
           </div>
         ) : (
           <div className="overflow-y-auto max-h-[70vh] space-y-2">
