@@ -4,7 +4,7 @@ import LinkCard from "@/components/linkCard";
 import SignInDialog from "@/components/signInDialog";
 import { Button } from "@/components/ui/button";
 import useUser from "@/hook/user";
-import { SERVER_URL } from "@/types";
+import { Link, SERVER_URL } from "@/types";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -99,7 +99,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="overflow-y-auto max-h-[70vh] space-y-2">
-            {links.map((link) => (
+            {links.map((link:Link) => (
               <LinkCard key={link.id} link={link} />
             ))}
           </div>
