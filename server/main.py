@@ -217,7 +217,7 @@ def auth_google(code: str):
         path="/",
         secure=True,
         httponly=True,
-        samesite="lax",
+        samesite="None",
     )
 
     return redirect_response
