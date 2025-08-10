@@ -10,7 +10,7 @@ import { Loader2 } from "lucide-react";
 function SignInDialog({ open }: { open: boolean }) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  console.log("🚀 ~ handelSignIn ~ SERVER_URL:", SERVER_URL);
+ 
   const handelSignIn = async () => {
     try {
       setIsLoading(true);

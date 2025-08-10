@@ -20,6 +20,8 @@ export default function Home() {
   }, []);
 
   const getLinks = async () => {
+
+    console.log("🚀 ~ getLinks ~ user:", user)
     if (user) {
       try {
         setQuery("");
