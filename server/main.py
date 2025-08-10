@@ -216,8 +216,8 @@ def auth_google(code: str):
         key="auth-token",
         value=token,
         path="/",
-        secure=False,
-        httponly=False,
+        secure=True,
+        httponly=True,
         samesite="lax",
     )
 
