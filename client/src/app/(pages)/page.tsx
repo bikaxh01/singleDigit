@@ -94,14 +94,16 @@ export default function Home() {
   }, []);
 
   const getLinks = async () => {
-    try {
-      setQuery("");
-      const res = await axios.get(`${SERVER_URL}/links`, {
-        withCredentials: true,
-      });
-      setLinks(res.data.data);
-    } catch (error) {
-      alert("something went wrong");
+    if (user) {
+      try {
+        setQuery("");
+        const res = await axios.get(`${SERVER_URL}/links`, {
+          withCredentials: true,
+        });
+        setLinks(res.data.data);
+      } catch (error) {
+        alert("something went wrong");
+      }
     }
   };
 
