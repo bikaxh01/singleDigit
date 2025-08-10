@@ -1,5 +1,5 @@
 from config.db import user_collection, link_collection
-from fastapi import FastAPI, Response, Request
+from fastapi import FastAPI, Response, Request, HTTPException
 from models.models import Links
 from fastapi.responses import RedirectResponse
 from models.models import User
@@ -28,7 +28,7 @@ app = FastAPI()
 origins = [
     os.getenv("CLIENT_CALLBACK_URL"),
 ]
-print(origins)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -63,30 +63,30 @@ async def auth_middleware(request: Request, call_next):
             token = auth_header.split(" ")[1]
 
     if not token:
-        return JSONResponse(
-            status_code=401, content={"detail": "Authentication token required"}
+        raise HTTPException(
+            status_code=401, detail="Authentication token required"
         )
 
     try:
         # Verify the JWT token
         payload = verify_jwt(token)
         if not payload or not payload.get("id"):
-            return JSONResponse(
-                status_code=401, content={"detail": "Invalid token payload"}
+            raise HTTPException(
+                status_code=401, detail="Invalid token payload"
             )
 
         request.state.user_id = payload.get("id")
         request.state.user_email = payload.get("email")
     except ValueError as e:
         # JWT specific errors
-        return JSONResponse(
-            status_code=401, content={"detail": f"Token validation failed: {str(e)}"}
+        raise HTTPException(
+            status_code=401, detail=f"Token validation failed: {str(e)}"
         )
     except Exception as e:
         # Log the error for debugging
         print(f"Auth middleware error: {str(e)}")
-        return JSONResponse(
-            status_code=500, content={"detail": "Authentication service error"}
+        raise HTTPException(
+            status_code=500, detail="Authentication service error"
         )
 
     return await call_next(request)
@@ -158,7 +158,7 @@ async def get_links(req: Request):
     user_links = []
 
     for link in cursor:
-        # Convert ObjectId to string for JSON serialization
+    
         link["id"] = str(link["_id"])
         link["user_id"] = str(link["user_id"])
         del link["_id"]
